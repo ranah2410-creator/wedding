@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mummy Ji & Papa Ji — 26th Anniversary</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Noto+Sans+Devanagari:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #c47c2a;
+    --gold-light: #e8a04a;
+    --deep-red: #8b2500;
+    --warm-brown: #5a1a00;
+    --cream: #fdf6ee;
+    --card-bg: rgba(255,252,245,0.95);
+  }
+
+  body {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    background: var(--cream);
+    min-height: 100vh;
+    color: #3a2010;
+    overflow-x: hidden;
+  }
+
+  .bg {
+    position: fixed; inset: 0; z-index: 0;
+    background:
+      radial-gradient(circle at 50% 0%,   #f9e4c8 0%, transparent 55%),
+      radial-gradient(circle at 0%  100%, #fde0d0 0%, transparent 50%),
+      radial-gradient(circle at 100% 100%,#fce8b2 0%, transparent 50%),
+      var(--cream);
+  }
+
+  .petals { position: fixed; inset: 0; pointer-events: none; z-index: 1; }
+  .petal {
+    position: absolute; top: -20px;
+    width: 10px; height: 14px;
+    border-radius: 50% 0 50% 0;
+    animation: fall linear infinite;
+  }
+  @keyframes fall { to { transform: translateY(110vh) rotate(400deg); opacity: 0; } }
+
+  .page {
+    position: relative; z-index: 2;
+    max-width: 760px; margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+
+  .top-ornament { text-align: center; margin-bottom: 1.5rem; animation: fadeDown 1s ease both; }
+
+  .diya-row {
+    display: flex; justify-content: center; gap: 2.5rem;
+    margin-bottom: 2rem;
+    animation: fadeDown 1s 0.2s ease both;
+  }
+  .diya-flame {
+    width: 10px; height: 18px;
+    background: linear-gradient(to top, #e85d04, #f9c74f, #fffde4);
+    border-radius: 50% 50% 20% 20%;
+    margin: 0 auto 2px;
+    animation: flicker 1.6s ease-in-out infinite alternate;
+    box-shadow: 0 0 10px 3px rgba(249,199,74,0.55);
+  }
+  .diya-body {
+    width: 30px; height: 12px;
+    background: linear-gradient(to bottom, #c96a1a, #8b4513);
+    border-radius: 0 0 50% 50%;
+    margin: 0 auto;
+  }
+  @keyframes flicker {
+    0%   { transform: scaleY(1)    rotate(-3deg); }
+    100% { transform: scaleY(1.18) rotate(3deg);  }
+  }
+
+  .card {
+    background: var(--card-bg);
+    border: 1px solid rgba(196,124,42,0.3);
+    border-radius: 3px;
+    padding: 3rem 2.5rem;
+    text-align: center;
+    box-shadow: 0 6px 50px rgba(180,100,20,0.1), inset 0 0 80px rgba(255,230,180,0.15);
+    animation: fadeUp 1s 0.4s ease both;
+    position: relative;
+  }
+  .card-corner { position: absolute; font-size: 22px; color: var(--gold); opacity: 0.45; }
+  .card-corner.tl { top: 10px; left: 14px; }
+  .card-corner.tr { top: 10px; right: 14px; }
+  .card-corner.bl { bottom: 10px; left: 14px; }
+  .card-corner.br { bottom: 10px; right: 14px; }
+
+  .divider      { border: none; border-top: 1px solid rgba(196,124,42,0.28); margin: 1.5rem auto; width: 80%; }
+  .divider-thin { border: none; border-top: 1px solid rgba(196,124,42,0.15); margin: 1rem auto;   width: 60%; }
+
+  .shubh-tag   { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+  .hindi-title { font-size: clamp(28px,6vw,46px); font-weight: 500; color: var(--deep-red); line-height: 1.3; margin-bottom: 0.25rem; }
+  .subtitle    { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(14px,3vw,18px); color: var(--gold); margin-bottom: 1.5rem; }
+
+  .number-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: #fff8f0;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px,8vw,60px); font-weight: 600;
+    width: 110px; height: 110px; line-height: 110px;
+    border-radius: 50%; margin: 1rem auto;
+    box-shadow: 0 4px 22px rgba(196,124,42,0.35), inset 0 -2px 6px rgba(0,0,0,0.15);
+    animation: pulse 3s ease-in-out infinite;
+  }
+  .anni-label { font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: #a05020; margin-top: -0.4rem; margin-bottom: 1.5rem; }
+
+  @keyframes pulse {
+    0%,100% { box-shadow: 0 4px 22px rgba(196,124,42,0.35), inset 0 -2px 6px rgba(0,0,0,0.15); }
+    50%      { box-shadow: 0 6px 32px rgba(196,124,42,0.55), inset 0 -2px 6px rgba(0,0,0,0.15); }
+  }
+
+  .names { font-family: 'Playfair Display', serif; font-size: clamp(26px,5vw,40px); font-weight: 600; color: var(--warm-brown); letter-spacing: 0.03em; }
+  .heart { display: block; color: var(--gold); font-size: 22px; margin: 0.3rem 0; animation: heartbeat 2s ease-in-out infinite; }
+  @keyframes heartbeat { 0%,100%{transform:scale(1)} 50%{transform:scale(1.18)} }
+
+  /* ── PHOTOS ── */
+  .photos {
+    display: flex; justify-content: center; align-items: flex-end;
+    gap: 2rem; margin: 2rem auto;
+    flex-wrap: wrap;
+  }
+  .photo-frame {
+    position: relative;
+    border: 3px solid var(--gold);
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(139,69,19,0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #f9e8d0;
+  }
+  .photo-frame:first-child { transform: rotate(-2.5deg); }
+  .photo-frame:last-child  { transform: rotate(2.5deg); }
+  .photo-frame:hover { box-shadow: 0 14px 40px rgba(139,69,19,0.35); }
+  .photo-frame:first-child:hover { transform: rotate(-2.5deg) translateY(-6px); }
+  .photo-frame:last-child:hover  { transform: rotate(2.5deg)  translateY(-6px); }
+
+  .photo-frame img {
+    display: block;
+    width: 210px; height: 260px;
+    object-fit: cover;
+  }
+  .photo-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(90,26,0,0.85), transparent);
+    color: #fde8c8; font-size: 13px; letter-spacing: 0.08em;
+    padding: 1.2rem 0.5rem 0.5rem;
+    font-family: 'Playfair Display', serif; font-style: italic;
+  }
+
+  .hindi-verse {
+    font-size: clamp(15px,3vw,19px); color: #8b3a10;
+    line-height: 2.1; margin: 1.5rem auto; max-width: 460px;
+  }
+  .love-verse {
+    font-family: 'Playfair Display', serif; font-style: italic;
+    font-size: clamp(14px,2.8vw,17px); color: #6b3010;
+    line-height: 1.9; margin: 1.2rem auto; max-width: 480px;
+  }
+
+  /* ── MUSIC ── */
+  .music-section { margin: 2rem auto 0; max-width: 520px; }
+  .music-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; }
+  .music-frame-wrap {
+    border: 1px solid rgba(196,124,42,0.3);
+    border-radius: 3px; overflow: hidden;
+    box-shadow: 0 4px 20px rgba(180,100,20,0.12);
+  }
+  .music-frame-wrap iframe { display: block; width: 100%; }
+
+  .from-tag  { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+  .from-name { font-family: 'Playfair Display', serif; font-size: clamp(18px,3.5vw,24px); font-weight: 600; color: var(--warm-brown); }
+  .final-tag { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; margin-top: 0.5rem; }
+
+  @keyframes fadeDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeUp   { from{opacity:0;transform:translateY(20px)}  to{opacity:1;transform:translateY(0)} }
+
+  @media (max-width: 520px) {
+    .card { padding: 2rem 1.2rem; }
+    .photo-frame img { width: 140px; height: 175px; }
+    .photos { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+<div class="petals" id="petals"></div>
+
+<div class="page">
+
+  <div class="top-ornament">
+    <svg width="260" height="36" viewBox="0 0 260 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="18" x2="100" y2="18" stroke="#c47c2a" stroke-width="0.8" opacity="0.5"/>
+      <circle cx="130" cy="18" r="13" stroke="#c47c2a" stroke-width="0.8" opacity="0.45"/>
+      <circle cx="130" cy="18" r="7"  stroke="#c47c2a" stroke-width="0.8" opacity="0.35"/>
+      <circle cx="130" cy="18" r="3"  fill="#c47c2a" opacity="0.55"/>
+      <path d="M113 18 Q121 9 130 18 Q139 27 147 18" stroke="#c47c2a" stroke-width="0.8" fill="none" opacity="0.45"/>
+      <line x1="160" y1="18" x2="260" y2="18" stroke="#c47c2a" stroke-width="0.8" opacity="0.5"/>
+      <circle cx="105" cy="18" r="2.5" fill="#c47c2a" opacity="0.4"/>
+      <circle cx="155" cy="18" r="2.5" fill="#c47c2a" opacity="0.4"/>
+    </svg>
+  </div>
+
+  <div class="diya-row">
+    <div class="diya"><div class="diya-flame"></div><div class="diya-body"></div></div>
+    <div class="diya"><div class="diya-flame" style="animation-delay:0.2s"></div><div class="diya-body"></div></div>
+    <div class="diya"><div class="diya-flame" style="animation-delay:0.4s"></div><div class="diya-body"></div></div>
+    <div class="diya"><div class="diya-flame" style="animation-delay:0.6s"></div><div class="diya-body"></div></div>
+    <div class="diya"><div class="diya-flame" style="animation-delay:0.8s"></div><div class="diya-body"></div></div>
+  </div>
+
+  <div class="card">
+    <span class="card-corner tl">❋</span>
+    <span class="card-corner tr">❋</span>
+    <span class="card-corner bl">❋</span>
+    <span class="card-corner br">❋</span>
+
+    <p class="shubh-tag">✦ शुभ अवसर ✦</p>
+    <h1 class="hindi-title">विवाह वर्षगाँठ</h1>
+    <p class="subtitle">Wedding Anniversary Celebrations</p>
+
+    <hr class="divider">
+
+    <div class="number-badge">26</div>
+    <p class="anni-label">Saal ki Saath — Years Together</p>
+
+    <hr class="divider-thin">
+
+    <div class="names">
+      Mummy Ji
+      <span class="heart">♥</span>
+      Papa Ji
+    </div>
+
+    <hr class="divider">
+
+    <!--
+    ╔══════════════════════════════════════════════════════╗
+    ║  PHOTO REPLACE KARNE KA TARIKA:                      ║
+    ║  Neeche src="image1.jpg" ko apni GitHub raw URL se   ║
+    ║  replace karo. Format:                               ║
+    ║  https://raw.githubusercontent.com/                  ║
+    ║      USERNAME/REPO-NAME/main/image1.jpg              ║
+    ╚══════════════════════════════════════════════════════╝
+    -->
+    <div class="photos">
+      <div class="photo-frame">
+        <img src="image1.jpg" alt="Mummy Ji"
+          onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22210%22 height=%22260%22><rect width=%22210%22 height=%22260%22 fill=%22%23f9e8d0%22/><text x=%22105%22 y=%22118%22 font-size=%2230%22 text-anchor=%22middle%22 fill=%22%23c47c2a%22>📷</text><text x=%22105%22 y=%22148%22 font-size=%2213%22 text-anchor=%22middle%22 fill=%22%23a05020%22 font-family=%22serif%22>image1.jpg</text><text x=%22105%22 y=%22168%22 font-size=%2211%22 text-anchor=%22middle%22 fill=%22%23c47c2a%22 font-family=%22serif%22>yahan replace karo</text></svg>'">
+        <div class="photo-caption">Mummy Ji</div>
+      </div>
+      <div class="photo-frame">
+        <img src="image2.jpg" alt="Papa Ji"
+          onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22210%22 height=%22260%22><rect width=%22210%22 height=%22260%22 fill=%22%23f9e8d0%22/><text x=%22105%22 y=%22118%22 font-size=%2230%22 text-anchor=%22middle%22 fill=%22%23c47c2a%22>📷</text><text x=%22105%22 y=%22148%22 font-size=%2213%22 text-anchor=%22middle%22 fill=%22%23a05020%22 font-family=%22serif%22>image2.jpg</text><text x=%22105%22 y=%22168%22 font-size=%2211%22 text-anchor=%22middle%22 fill=%22%23c47c2a%22 font-family=%22serif%22>yahan replace karo</text></svg>'">
+        <div class="photo-caption">Papa Ji</div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="hindi-verse">
+      साथ चले हैं बरसों से,<br>
+      हर खुशी और हर तूफ़ान में।<br>
+      यह रिश्ता नहीं, एक इबादत है,<br>
+      जो बसती है आपके ईमान में।
+    </div>
+
+    <hr class="divider-thin">
+
+    <div class="love-verse">
+      Twenty-six years of love, laughter,<br>
+      and a lifetime of memories built together.<br>
+      May your bond grow even more beautiful<br>
+      with each passing year.
+    </div>
+
+    <hr class="divider">
+
+    <!-- Tum Hi Ho — YouTube embed -->
+    <div class="music-section">
+      <p class="music-label">🎵 Unke liye — Tum Hi Ho</p>
+      <div class="music-frame-wrap">
+        <iframe
+          width="100%" height="80"
+          src="https://www.youtube.com/embed/Umqb9KENgmk?autoplay=1&loop=1&playlist=Umqb9KENgmk&controls=1&rel=0&modestbranding=1"
+          title="Tum Hi Ho — Aashiqui 2"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <p class="from-tag">— Pyaar ke saath</p>
+    <p class="from-name">Aapke Bachche 🪔</p>
+
+    <hr class="divider-thin">
+    <p class="final-tag">✦ &nbsp; Happy 26th Anniversary &nbsp; ✦</p>
+  </div>
+
+</div>
+
+<script>
+  const container = document.getElementById('petals');
+  const colors = [
+    'rgba(210,80,50,0.5)',
+    'rgba(230,140,60,0.5)',
+    'rgba(250,200,100,0.45)',
+    'rgba(200,60,80,0.4)',
+    'rgba(240,160,80,0.45)'
+  ];
+  for (let i = 0; i < 28; i++) {
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.animationDuration = (7 + Math.random() * 10) + 's';
+    p.style.animationDelay = (Math.random() * 14) + 's';
+    p.style.background = colors[Math.floor(Math.random() * colors.length)];
+    p.style.transform = `rotate(${Math.random() * 360}deg) scale(${0.6 + Math.random() * 0.9})`;
+    container.appendChild(p);
+  }
+</script>
+
+</body>
+</html>
